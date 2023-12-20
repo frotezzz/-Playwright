@@ -13,4 +13,7 @@ test('Работа с несколькими вкладками', async function
         ]
     )
     await newPage.locator('.FlatButton.FlatButton--primary.FlatButton--size-m.redesigned-group-action').click()
+    await newPage.close()
+    await page.locator('#express-order-submit').click()
+
 })
