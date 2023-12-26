@@ -33,7 +33,7 @@ test.skip("Valid Login",async function({page}){
     await expect(page).toHaveURL(/home/); 
 });
 
-test.skip("Valid Login2", async function({page}){
+test("Valid Login2", async function({page}){
 
     await  page.goto('https://wiki.hvalwaters.ru/login');
 
@@ -52,7 +52,7 @@ test.skip("Valid Login2", async function({page}){
 
 });
 
-test("Valid Login3",async function({page}){
+test.skip("Valid Login3",async function({page}){
 
     await  page.goto('https://yc.erp.wand.am/auth/login/');
 

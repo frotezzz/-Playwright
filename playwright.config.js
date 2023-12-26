@@ -42,6 +42,23 @@ module.exports = defineConfig({
       video:'off',
       trace:'on' },
     },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] ,
+      viewport: {width:1920, height:1080},
+      screenshot:'off',
+      video:'off',
+      trace:'on' },
+    },
+
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] ,
+      viewport: {width:1920, height:1080},
+      screenshot:'off',
+      video:'off',
+      trace:'on' }
+    }
 
 
     /* Test against mobile viewports. */
