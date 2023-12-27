@@ -24,21 +24,18 @@ test('Видимость элементов на пути авторизации
     //ниже пытался все эти поля задать одной константой и проверять наличие полей в <input aria-label="verification input" spellcheck="false" class="vi" inputmode="numeric" value="" xpath="1"> - не получилось
     const fildCode0 = page.locator('//div[@id="field-0"]'); 
     await expect(fildCode0).toBeVisible();
+    //await fildCode0.fill('1')
     const fildCode1 = page.locator('//div[@id="field-1"]');
     await expect(fildCode1).toBeVisible();
+    //await fildCode1.fill('2')
     const fildCode2 = page.locator('//div[@id="field-2"]');
     await expect(fildCode2).toBeVisible();
+    //await fildCode2.fill('3')
     const fildCode3 = page.locator('//div[@id="field-3"]');
     await expect(fildCode3).toBeVisible();
-    const btnRepiatSendCode = page.locator('.block mx-auto disabled:text-[#6A6A6A].underline text-red');
+    //await fildCode3.fill('4')
+    const btnRepiatSendCode = page.locator('[data-testid="resendingTimer"]');
     await expect(btnRepiatSendCode).toBeVisible(); // 33 и 34 строка не работают, скорее всего из-за счетчика - разобраться
-
-
-
-    //(await page.waitForSelector('//button[contains(text(),"Войти")]')).isVisible(); Ненадежный вариант проверки видимоти элемента
-    //(await page.waitForSelector('//div[@class="mt-4 mb-6 font-bold text-2xl"]')).isVisible(); Ненадежный вариант проверки видимоти элемента
-    //(await page.waitForSelector('//*[name()="path" and contains(@d,"M9.0668 0.")]')).isVisible(); Ненадежный вариант проверки видимоти элемента
-    
-    
-   
+    await page.locator('//input[@aria-label="verification input"]').fill('1234');
+    await page.waitForSelector('//div[@class="flex gap-2.5 items-center cursor-pointer"]');
 })
