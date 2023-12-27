@@ -5,7 +5,7 @@ test('Видимость элементов на пути авторизации
     await page.goto('https://wa2-dev2.hvalwaters.ru/test_card/index.html');
     const btnEnter = page.locator('//button[contains(text(),"Войти")]');
     await expect(btnEnter).toBeVisible();
-    await page.locator('//button[contains(text(),"Войти")]').click();
+    await btnEnter.click();
     const btnBack = page.locator('//*[name()="path" and contains(@d,"M9.0668 0.")]');
     await expect(btnBack).toBeVisible();
     const textLogin = page.locator('//div[@class="mt-4 mb-6 font-bold text-2xl"]');
