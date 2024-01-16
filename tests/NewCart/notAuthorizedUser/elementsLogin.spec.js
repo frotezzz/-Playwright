@@ -10,7 +10,7 @@ test('Видимость элементов на пути авторизации
     await expect(btnBack).toBeVisible();
     const textLogin = page.locator('//div[@class="mt-4 mb-6 font-bold text-2xl"]');
     await expect(textLogin).toBeVisible();
-    const inputNumber = page.locator('(//input[@placeholder="+7"])[2]');
+    const inputNumber = page.locator('//input[@placeholder="+7"]');
     await expect(inputNumber).toBeVisible();
     await inputNumber.fill('5551234567');
     const btnEnterInProfile = page.locator('//button[contains(text(),"Войти в профиль")]');
