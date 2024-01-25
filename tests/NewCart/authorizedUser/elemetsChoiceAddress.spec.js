@@ -45,19 +45,19 @@ test('Видимость элементов на пути выбора адре�
     const btnDelete = page.locator('[data-testid="clearSuggestInput"]');
     await expect(btnDelete).toBeVisible();
     
-    await page.waitForSelector('._result_1xh72_37');
-    const resultSearchAddress = await page.$$('._result_1xh72_37')
+    await page.waitForSelector('[data-testid="suggestAddressItem"]');
+    const resultSearchAddress = await page.$$('[data-testid="suggestAddressItem"]')
     for(let i=0;i<resultSearchAddress.length; i++)
     {
         const textAddress = await resultSearchAddress[i].textContent()
         if(textAddress.includes('проспект Энергетиков'))
         {
+            console.log(textAddress);
             await resultSearchAddress[i].click();
             break;
         }
-        console.log(textAddress) //выводится пустота
-    };
-
+    }; 
+    
     const btnSaveAdress = page.locator('[data-testid="addressSelectionButton"]');
     await expect(btnSaveAdress).toBeVisible();
     const inputAddAddress = page.locator('[data-testid="deliveryAddress"]');
