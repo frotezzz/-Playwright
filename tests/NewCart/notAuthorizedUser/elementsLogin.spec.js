@@ -2,7 +2,7 @@ const {test, expect} = require ('@playwright/test')
 
 test('Видимость элементов на пути авторизации в новой корзины', async function ({page}){
 
-    await page.goto('https://wa2-dev2.hvalwaters.ru/test_card/index.html');
+    await page.goto('https://wa2-dev2.hvalwaters.ru/test_api_cart_fjio3we2f2/');
     const btnEnter = page.locator('//button[contains(text(),"Войти")]');
     await expect(btnEnter).toBeVisible();
     await btnEnter.click();
@@ -10,7 +10,7 @@ test('Видимость элементов на пути авторизации
     await expect(btnBack).toBeVisible();
     const textLogin = page.locator('//div[@class="mt-4 mb-6 font-bold text-2xl"]');
     await expect(textLogin).toBeVisible();
-    const inputNumber = page.locator('//input[@placeholder="+7"]');
+    const inputNumber = page.locator('//div[@class="relative form-field"]//input[@value="+7"]');
     await expect(inputNumber).toBeVisible();
     await inputNumber.fill('5551234567');
     const btnEnterInProfile = page.locator('//button[contains(text(),"Войти в профиль")]');
