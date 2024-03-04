@@ -1,12 +1,15 @@
 const {test, expect} = require ('@playwright/test');
-const exp = require('constants');
 
-test('Видимость элементов на пути выбора адреса под авторизованным юзером', async function ({page}){
+test('Видимость элементов на пути выбора адреса под авторизованным юзером', async function ({browser}){
 
-    await page.goto('https://wa2-dev2.hvalwaters.ru/test_api_cart_fjio3we2f2/');
+    const context = await browser.newContext();
+    const pageSite = await context.newPage();
+    await pageSite.goto('https://wa2-dev2.hvalwaters.ru/')
+    const page = await context.newPage();
+    await page.goto('https://wa2-dev2.hvalwaters.ru/mobile_cart');
     const btnEnter = page.locator('//button[contains(text(),"Войти")]');
     await btnEnter.click();
-    const inputNumber = page.locator('//div[@class="relative form-field"]//input[@value="+7"]');
+    const inputNumber = page.locator('//div[@class="relative form-field"]//input[@type="tel"]');
     await inputNumber.fill('5551234567');
     const btnEnterInProfile = page.locator('//button[contains(text(),"Войти в профиль")]');
     await btnEnterInProfile.click();
@@ -22,7 +25,7 @@ test('Видимость элементов на пути выбора адре�
     await expect(btnBack).toBeVisible;
     const checkedAddress = page.locator('[data-testid="RadioButtonCheckedIcon"]');
     await expect(checkedAddress).toBeVisible;
-    const selectedAddress = page.locator('//label[@for="3924357"]');
+    const selectedAddress = page.locator('//label[@for="4173637"]');
     await expect(selectedAddress).toBeVisible();
     const uncheckedAddress = page.locator('[data-testid="RadioButtonUncheckedIcon"]');
     await expect(uncheckedAddress.first()).toBeVisible();
@@ -33,7 +36,7 @@ test('Видимость элементов на пути выбора адре�
     await expect(fildNewAddress).toBeVisible();
     await fildNewAddress.click();
     const btnBackSearchAddress = page.locator('[data-testid="closeGeoSuggestList"]');
-    await expect(btnBackSearchAddress).toBeVisible(); //не находит 37 и 38 строчку по какой-то причине, теперь находит
+    await expect(btnBackSearchAddress).toBeVisible(); 
     const inputSearchAddress = page.locator('[data-testid="suggestInput"]');
     await expect(inputSearchAddress).toBeVisible();
     /*const btnMapSearchAddress = page.locator('[data-testid="switchToMap"]'); 
@@ -48,7 +51,7 @@ test('Видимость элементов на пути выбора адре�
     for(let i=0;i<resultSearchAddress.length; i++)
     {
         const textAddress = await resultSearchAddress[i].textContent()
-        if(textAddress.includes('проспект Энергетиков'))
+        if(textAddress.includes('проспект Энергетиков, 19'))
         {
             console.log(textAddress);
             await resultSearchAddress[i].click();
@@ -62,6 +65,7 @@ test('Видимость элементов на пути выбора адре�
     await expect(inputAddAddress).toBeVisible();
     const inputFlat = page.locator('[data-testid="addressFlat"]');
     await expect(inputFlat).toBeVisible();
+    await inputFlat.fill('999');
     const inputFloor = page.locator('[data-testid="addressFloor"]');
     await expect(inputFloor).toBeVisible();
     const inputEntrance = page.locator('[data-testid="addressEntrance"]');
